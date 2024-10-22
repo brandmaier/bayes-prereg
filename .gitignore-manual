@@ -6,3 +6,8 @@
 *.pdf
 README.html
 apa.csl
+*.html
+data/
+images/
+xaringan-themer.css
+*.svg

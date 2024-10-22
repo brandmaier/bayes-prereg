@@ -5,6 +5,8 @@ on:
     types: [opened, synchronize]
     workflow_dispatch:
 
+permissions: write-all
+
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
   GHP_URL: 'https://aaronpeikert.github.io/bayes-prereg/'
@@ -12,7 +14,7 @@ env:
 jobs:
   preview:
     runs-on: ubuntu-latest
-    container: ghcr.io/aaronpeikert/bayes-prereg:main
+    container: ghcr.io/${{ github.repository }}:main
     steps:
       - 
         name: Checkout repository
@@ -32,6 +34,8 @@ jobs:
           folder: publish/
           # Organizations require token of the bearer!
           token: ${{ secrets.GITHUB_TOKEN }}
+          force: false
+          clean: false
 
       - 
         name: Comment Link
